@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tailwind Starter Template - Nordic Shop: Tailwind Toolbox</title>
+    <meta name="description" content="Free open source Tailwind CSS Store template">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,store template, shop layout, minimal, monochrome, minimalistic, theme, nordic">
+    
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+	
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
+
+    <style>
+        .work-sans {
+            font-family: 'Work Sans', sans-serif;
+        }
+                
+        #menu-toggle:checked + #menu {
+            display: block;
+        }
+        
+        .hover\:grow {
+            transition: all 0.3s;
+            transform: scale(1);
+        }
+        
+        .hover\:grow:hover {
+            transform: scale(1.02);
+        }
+        
+        .carousel-open:checked + .carousel-item {
+            position: static;
+            opacity: 100;
+        }
+        
+        .carousel-item {
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        #carousel-1:checked ~ .control-1,
+        #carousel-2:checked ~ .control-2,
+        #carousel-3:checked ~ .control-3 {
+            display: block;
+        }
+        
+        .carousel-indicators {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+        #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+        #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+            color: #000;
+            /*Set to match the Tailwind colour you want the active one to be */
+        }
+    </style>
+
+</head>
+
+<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+
+    <!--Nav-->
+    <nav id="header" class="w-full z-30 top-0 py-1">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+
+            <label for="menu-toggle" class="cursor-pointer md:hidden block">
+                <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <title>menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </label>
+            <input class="hidden" type="checkbox" id="menu-toggle" />
+
+            <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+                <nav>
+                    <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+                        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Shop</a></li>
+                        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="order-1 md:order-2">
+                <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+                    <svg class="fill-current text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M5,22h14c1.103,0,2-0.897,2-2V9c0-0.553-0.447-1-1-1h-3V7c0-2.757-2.243-5-5-5S7,4.243,7,7v1H4C3.447,8,3,8.447,3,9v11 C3,21.103,3.897,22,5,22z M9,7c0-1.654,1.346-3,3-3s3,1.346,3,3v1H9V7z M5,10h2v2h2v-2h6v2h2v-2h2l0.002,10H5V10z" />
+                    </svg>
+                    JAI BALAYYA 🙏
+                </a>
+            </div>
+
+            <div class="order-2 md:order-3 flex items-center" id="nav-content">
+
+                <a class="inline-block no-underline hover:text-black" href="#">
+                    <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <circle fill="none" cx="12" cy="7" r="3" />
+                        <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
+                    </svg>
+                </a>
+
+                <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+                    <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
+                        <circle cx="10.5" cy="18.5" r="1.5" />
+                        <circle cx="17.5" cy="18.5" r="1.5" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="carousel relative container mx-auto" style="max-width:1600px;">
+        <div class="carousel-inner relative overflow-hidden w-full">
+            <!--Slide 1-->
+            <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 2-->
+            <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0 bg-cover bg-right" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Real Bamboo Wall Clock</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 3-->
+            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+                <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style="background-image: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
+
+                    <div class="container mx-auto">
+                        <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <p class="text-black text-2xl my-4">Brown and blue hardbound book</p>
+                            <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!-- Add additional indicators for each slide-->
+            <ol class="carousel-indicators">
+                <li class="inline-block mr-3">
+                    <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+                <li class="inline-block mr-3">
+                    <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+                <li class="inline-block mr-3">
+                    <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+                </li>
+            </ol>
+
+        </div>
+    </div>
+
+    <!--	 
+
+Alternatively if you want to just have a single hero
+
+<section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem; background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
+
+	<div class="container mx-auto">
+
+		<div class="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide">
+			<h1 class="text-black text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</h1>
+			<a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">products</a>
+
+		</div>
+
+	  </div>
+
+</section>
+
+-->
+
+    <section class="bg-white py-8">
+
+        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+
+            <nav id="store" class="w-full z-30 top-0 px-6 py-1">
+                <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+
+                    <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+				Store
+			</a>
+              </div>
+            </nav>
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://amzn.to/47JMg24">
+                  <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51sZ0bOotML._SL1500_.jpg">
+                  <div class="pt-3 flex items-center justify-between">
+                    <p class="">OnePlus Bullets Wireless Z2 ANC Bluetooth in Ear Earphones with Mic, 45dB Hybrid ANC, Bombastic Bass - 12.4 mm Drivers, 10 Mins Charge - 20 Hrs Music, 28 Hrs Battery (Black)</p>
+                  </div>
+                  <p class="pt-1 text-gray-900">₹1,999</p>
+                </a>
+              </div>
+              
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://amzn.to/3RPApd6">
+                  <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31oQbBG7h3L._SX300_SY300_QL70_ML2_.jpg">
+                  <div class="pt-3 flex items-center justify-between">
+                    <p class="">URBN 10000 mAh Lithium_Polymer 22.5W Super Fast Charging Ultra Compact Power Bank with Quick Charge & Power Delivery Type C Input/Output Made in India Type C Cable Included (Camo)</p>
+                  </div>
+                  <p class="pt-1 text-gray-900">₹999.00</p>
+                </a>
+              </div>
+              
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://amzn.to/495oqiH">
+                  <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/310b1UFZGjL._SY300_SX300_QL70_ML2_.jpg">
+                  <div class="pt-3 flex items-center justify-between">
+                    <p class="">Apple Watch Charger Magnetic Fast Charging Cable [Portable] Magnetic Wireless Charging Compatible with iWatch Series Ultra/9/8/7/6/SE/SE2/5/4/3/2 - [3.3FT] White</p>
+                  </div>
+                  <p class="pt-1 text-gray-900">₹199.00</p>
+                </a>
+              </div>
+              
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://www.amazon.in/dp/B07VKM2HR5?psc=1&th=1&smid=A15APWRK6P7LBV&tag=travel0592-21">
+                    <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/41YMxB8GbOL._SL1000_.jpg">
+                    <div class="pt-3 flex items-center justify-between">
+                        <p class="">NIVEA Nourishing Body Milk 600ml Body Lotion</p>
+                    </div>
+                    <p class="pt-1 text-gray-900">₹ 314</p>
+                </a>
+            </div>
+<!-- Product 1 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-10-2-inch-25-91-Bionic-Wi-Fi/dp/B09G9CVML5/ref=sr_1_3">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31+KEhn35VL._SX342_SY445_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Apple 2021 10.2-inch (25.91 cm) iPad with A13 Bionic chip (Wi-Fi 64GB) - Space Grey (9th Generation)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 30,900.00</p>
+    </a>
+</div>
+
+<!-- Product 2 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Toy-Imagine-Multicolor-Graphic-Writing/dp/B0BRB9L43T/">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51tmWG7u5cL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Toy Imagine™ 8.5 inch LCD Writing Tablet for Children. 3-8 Years Digital Magic Slate | Electronic Notepad | Scribble Doodle Drawing Rough Pad | Best Birthday Gift for Boys & Girls.</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 99.00</p>
+    </a>
+</div>
+
+<!-- Product 3 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-AirPods-Pro-2nd-Generation/dp/B0BDKD8DVD/ref=sr_1_1?crid=317AVRBE93RKH&keywords=apple+products&qid=1705052866&sprefix=apple+products%2Caps%2C203&sr=8-1">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/2110TEYPKnL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Apple AirPods Pro (2nd Generation)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 21,999.00</p>
+    </a>
+</div>
+
+<!-- Product 4 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-Original-MMX62ZM-Lightning-Headphone/dp/B01LWAUW1P/ref=sr_1_4?crid=317AVRBE93RKH&keywords=apple+products&qid=1705052866&sprefix=apple+products%2Caps%2C203&sr=8-4">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/21AlK1A7QtL._SY445_SX342_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Apple Lightning to 3.5 mm Headphone Jack Adapter</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 699.00</p>
+    </a>
+</div>
+
+<!-- Product 5 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-MX532ZMA-New-AirTag/dp/B0935DN1BN/ref=sr_1_6?crid=317AVRBE93RKH&keywords=apple+products&qid=1705052866&sprefix=apple+products%2Caps%2C203&sr=8-6">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31WbF2XSZFS._SY445_SX342_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">New Apple AirTag</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 3,490.00</p>
+    </a>
+</div>
+
+<!-- Product 6 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-iPhone-13-128GB-Midnight/dp/B09G9HD6PD/ref=sr_1_10?crid=317AVRBE93RKH&keywords=apple+products&qid=1705052866&sprefix=apple+products%2Caps%2C203&sr=8-10">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31tyUh1todL._SY445_SX342_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Apple iPhone 13 (128GB) - Midnight</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 52,999.00</p>
+    </a>
+</div>
+<!-- Product 7 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Toy-ImagineTM-Traditional-Development-Challenging/dp/B09XML6PPD/ref=sr_1_5?crid=3Q3LRZ1RH30DY&keywords=games&qid=1705052989&sprefix=games%2Caps%2C203&sr=8-5">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/413yV6+0eKL._SY300_SX300_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Toy Imagine™ Tumbling Tower Game for Kids and Adults Wooden Blocks with 4 Dices Game|Stacking Game Challenging|Maths Game</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 299.00</p>
+    </a>
+</div>
+
+<!-- Product 8 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Mattel-Games-Uno-Flip-Side/dp/B07JKB2H59/ref=sr_1_11?crid=3Q3LRZ1RH30DY&keywords=games&qid=1705052989&sprefix=games%2Caps%2C203&sr=8-11">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51Spf-j2BrL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Mattel Games Uno Flip Side Card Game Multi color</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 150.00</p>
+    </a>
+</div>
+
+<!-- Product 9 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/MONOPOLY-Board-Families-Classic-Gameplay/dp/B08663TRYP/ref=sr_1_9?crid=3Q3LRZ1RH30DY&keywords=games&qid=1705052989&sprefix=games%2Caps%2C203&sr=8-9">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51Rg6SxtpjL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">MONOPOLY Board Game Games & puzzles for Families and Friends Toys for Kids Boys and Girls Ages 8+ fantasy Gameplay Christmas Gift For Kids & Families | Christmas Game Night | Xmas gift</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 768.00</p>
+    </a>
+</div>
+
+<!-- Product 10 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Trinkets-More-Mikado-Wooden-Pick-Up/dp/B06XVC8S15/ref=sr_1_29?crid=3Q3LRZ1RH30DY&keywords=games&qid=1705052989&sprefix=games%2Caps%2C203&sr=8-29">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51wfdI0VU5L._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Trinkets & More - Mikado | Wooden 31 Pick-Up Sticks | Best Return Gift | Fun Family Indoor Board Game for Adults and Kids 5+ Years (Pack of 1)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 195.00</p>
+    </a>
+</div>
+
+<!-- Product 11 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Chic-Buddy-Infinity-Relieving-Fidgeting/dp/B09HQZJ1C2/ref=sr_1_7?crid=10FTOTUXUKL8B&keywords=stress+relief+toys&qid=1705053097&sprefix=stress+%2Caps%2C212&sr=8-7">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31npD8OiHiL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Chic Buddy Infinity Cube Fidget Toy Stress Relieving Fidgeting Game for Kids and AdultsCute Mini Unique Gadget for Anxiety Relief and Kill Time (Macaron Blue)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 279.00</p>
+    </a>
+</div>
+
+<!-- Product 12 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Parteet-Squishystress-Pressure-Relieve-Anti-Stress/dp/B07PKB5GVX/ref=sr_1_38?crid=10FTOTUXUKL8B&keywords=stress+relief+toys&qid=1705053097&sprefix=stress+%2Caps%2C212&sr=8-38">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/518hUBntWJL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Parteet SquishyStress Ball for Pressure Relieve/Anti-Stress Anti Anxiety (Pack of 2) Blue</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 225.00</p>
+    </a>
+</div>
+
+<!-- Product 13 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Graphene-Spring-Activity-Birthdays-Portable/dp/B0CCDNNVTN/ref=sr_1_16?crid=10FTOTUXUKL8B&keywords=stress+relief+toys&qid=1705053097&sprefix=stress+%2Caps%2C212&sr=8-16">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51YgR0M9hqL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Graphene Rainbow Spring Fun Activity Stress Relief Toy for Kids Adults of All Age Group for Birthdays Compact and Portable Easy to Carry</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 59.00</p>
+    </a>
+</div>
+
+<!-- Product 14 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/VniQ-Magnetic-Infinity-Transforms-Shifting/dp/B0CCVQ1DVF/ref=sr_1_36?crid=10FTOTUXUKL8B&keywords=stress+relief+toys&qid=1705053097&sprefix=stress+%2Caps%2C212&sr=8-36">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51-WOEJRkHL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">VniQ Magnetic Cube Puzzle Box Infinity Cubes Fidget Cube 24 Rare Earth Magnets Transforms Into Over 70 Shapes Magic Cube 3D Magnetic Fidget Cube Puzzle Game Shape Shifting Cube</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 399.00</p>
+    </a>
+</div>
+
+<!-- Product 15 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Lapster-Multi-Function-Cleaning-Keyboard-Earphones/dp/B0BBW16VH9/ref=sr_1_4?crid=2V2WEXV7CQ17J&keywords=laptop+accessories&qid=1705053220&sprefix=laptop+accc%2Caps%2C209&sr=8-4">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/310PDO+IYgL._SY300_SX300_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Lapster 5-in-1 Multi-Function Laptop Cleaning Brush/Keyboard Cleaning kit/Gadget Cleaning kit Gap Duster Key-Cap Puller for Laptop Keyboard and Earphones(Multi Colour)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 99.00</p>
+    </a>
+</div>
+
+<!-- Product 16 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://amzn.to/48ZgWO2">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/511qIyu3AYL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Sounce Spiral Cable Charger Protecter & Wire Protectors Spring Wire for All Wired Accessories for USB Charger Data Cable Headphones MacBook Laptop Elastic Cord Saver (Black & Grey-24Pcs)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 99.00</p>
+    </a>
+</div>
+
+<!-- Product 17 -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/VniQ-Magnetic-Infinity-Transforms-Shifting/dp/B0CCVQ1DVF/ref=sr_1_36?crid=10FTOTUXUKL8B&keywords=stress+relief+toys&qid=1705053097&sprefix=stress+%2Caps%2C212&sr=8-36">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51-WOEJRkHL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">VniQ Magnetic Cube Puzzle Box Infinity Cubes Fidget Cube 24 Rare Earth Magnets Transforms Into Over 70 Shapes Magic Cube 3D Magnetic Fidget Cube Puzzle Game Shape Shifting Cube</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 399.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Apple-10-2-inch-25-91-Bionic-Wi-Fi/dp/B09G9CVML5/ref=sr_1_3">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31+KEhn35VL._SX342_SY445_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Apple 2021 10.2-inch (25.91 cm) iPad with A13 Bionic chip (Wi-Fi 64GB) - Space Grey (9th Generation)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 30,900.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Toy-Imagine-Multicolor-Graphic-Writing/dp/B0BRB9L43T/">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51tmWG7u5cL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Toy ImagineTM 8.5 inch LCD Writing Tablet for Children. 3-8 Years Digital Magic Slate | Electronic Notepad | Scribble Doodle Drawing Rough Pad | Best Birthday Gift for Boys & Girls.</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 123.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/AADI-Mens-Running-Sport-Shoes/dp/B0842R353G/ref=pd_rhf_gw_s_pd_crcd_d_sccl_1_7/258-5999572-1217606?pd_rd_w=DEEA4&content-id=amzn1.sym.785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_p=785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_r=6BVNEMVZJRR8ZEYZ5JB1&pd_rd_wg=zSzwi&pd_rd_r=0943b3b6-ee5a-4626-a364-3b897fda8b7a&pd_rd_i=B0CGP3QTDR&psc=1">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/41GqBJeeiDL._SX395_SY395_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">AADI Mens Shoes Sports Running Shoes</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 399</p>
+    </a>
+</div>
+
+<!-- Repeat the structure for the remaining items -->
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/HERSHEYS-NUGGETS-ALMONDS-CRUNCHY-CHOCOLATY/dp/B0CG8YWM9Z/ref=pd_rhf_gw_s_pd_crcd_d_sccl_1_10/258-5999572-1217606?pd_rd_w=DEEA4&content-id=amzn1.sym.785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_p=785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_r=6BVNEMVZJRR8ZEYZ5JB1&pd_rd_wg=zSzwi&pd_rd_r=0943b3b6-ee5a-4626-a364-3b897fda8b7a&pd_rd_i=B0CG8YWM9Z&psc=1">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/41McgvJhoWL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">HERSHEY'S NUGGETS CREAMY MILK WITH WHOLE ALMONDS | CRUNCHY CHOCOLATY DELIGHT 130.2g</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 291.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/HERSHEYS-KISSES-Special-Almonds-Chocolates/dp/B0BRVVMVD1/ref=pd_rhf_gw_s_pd_crcd_d_sccl_1_19/258-5999572-1217606?pd_rd_w=DEEA4&content-id=amzn1.sym.785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_p=785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_r=6BVNEMVZJRR8ZEYZ5JB1&pd_rd_wg=zSzwi&pd_rd_r=0943b3b6-ee5a-4626-a364-3b897fda8b7a&pd_rd_i=B0BRVVMVD1&psc=1">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/41bG8HwRfwL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">HERSHEY'S Kisses Special Dark 'N' Almonds 100.8G</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 150.00</p>
+    </a>
+</div>
+
+<!-- Repeat the structure for the remaining items -->
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Hersheys-Valentine-Greeting-Chocolate-Pouch/dp/B0834SX3CV/ref=pd_rhf_gw_s_pd_crcd_d_sccl_1_23/258-5999572-1217606?pd_rd_w=DEEA4&content-id=amzn1.sym.785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_p=785b16db-ca40-46a3-ae75-2b38bb48d1aa&pf_rd_r=6BVNEMVZJRR8ZEYZ5JB1&pd_rd_wg=zSzwi&pd_rd_r=0943b3b6-ee5a-4626-a364-3b897fda8b7a&pd_rd_i=B0834SX3CV&psc=1">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51KGCpBKECL._SX300_SY300_QL70_ML2_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">Hershey's Bar Creamy Milk Chocolate 100 gm (Pack of 2)</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 400.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Almanack-Naval-Ravikant-Wealth-Happiness/dp/9354893899/?_encoding=UTF8&pd_rd_w=BCGPQ&content-id=amzn1.sym.530fd668-94df-4c81-9a90-e3fd46ac3c78%3Aamzn1.symc.0afebb92-b09a-4f03-82a1-f9735afd4f0e&pf_rd_p=530fd668-94df-4c81-9a90-e3fd46ac3c78&pf_rd_r=H3BQ6HVH4CTH84MKG1GD&pd_rd_wg=YJmmn&pd_rd_r=4d876ea2-9d6c-4ab8-a27f-e799f9e75360&ref_=pd_gw_ci_mcx_mr_hp_d">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31SHCaOZVFL._SY445_SX342_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">The Almanack Of Naval Ravikant: A Guide to Wealth and Happiness</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 284.00</p>
+    </a>
+</div>
+
+<div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <a href="https://www.amazon.in/Subtle-Art-Not-Giving/dp/0062641549/?_encoding=UTF8&pd_rd_w=BCGPQ&content-id=amzn1.sym.530fd668-94df-4c81-9a90-e3fd46ac3c78%3Aamzn1.symc.0afebb92-b09a-4f03-82a1-f9735afd4f0e&pf_rd_p=530fd668-94df-4c81-9a90-e3fd46ac3c78&pf_rd_r=H3BQ6HVH4CTH84MKG1GD&pd_rd_wg=YJmmn&pd_rd_r=4d876ea2-9d6c-4ab8-a27f-e799f9e75360&ref_=pd_gw_ci_mcx_mr_hp_d">
+        <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/511vJPN7p5L._SY445_SX342_.jpg">
+        <div class="pt-3 flex items-center justify-between">
+            <p class="">The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life</p>
+        </div>
+        <p class="pt-1 text-gray-900">₹ 316.00</p>
+    </a>
+</div>
+
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="#">
+                    <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/51xIRah+tfL._SY879_.jpg">
+                    <div class="pt-3 flex items-center justify-between">
+                        <p class="">F Gear String 11 Ltrs Gym Bag</p>
+                    </div>
+                    <p class="pt-1 text-gray-900">₹ 108</p>
+                </a>
+            </div>
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://www.amazon.in/SAFARI-Ltrs-Casual-Backpack-DAYPACKNEO15CBSEB/dp/B07Q7CNPMV/ref=sr_1_5?crid=1G9BU9CS9P20P&keywords=Safari+Spartan+21+Ltrs+Water+Resistant+blue&qid=1705079858&s=beauty&sprefix=safari+spartan+21+ltrs+water+resistant+blue%2Cbeauty%2C182&sr=1-5">
+                  <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/31BBPja845L._SX342_SY445_.jpg">
+                  <div class="pt-3 flex items-center justify-between">
+                    <p class="">Safari Small Size 15 Ltrs Unisex Standard Backpack - Sea Blue</p>
+                  </div>
+                  <p class="pt-1 text-gray-900">₹ 352</p>
+                </a>
+              </div>
+              
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="#">
+                    <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/61xY8U1KM5L._SL1280_.jpg">
+                    <div class="pt-3 flex items-center justify-between">
+                        <p class="">TECNO MEGABOOK T1, Intel Core 11th Gen i3 Processor (8GB RAM/ 512GB SSD Storage), 15.6-Inch (39.62 CM) Eye Comfort disply, (14.8mm Ultra Slim/ 70 Wh Large Battery/Windows 11/ Space Grey / 1.56 Kg)</p>
+                    </div>
+                    <p class="pt-1 text-gray-900">₹ 22,676</p>
+                </a>
+            </div>
+
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://www.amazon.in/Spotzero-Milton-Stainless-Wringer-refills/dp/B07D4T4YT2/ref=sr_1_3?_encoding=UTF8&content-id=amzn1.sym.c49ba2bb-c538-4c7a-9d51-69015c057020&keywords=cleaning%2Bsupplies&pd_rd_r=7deea2bb-d9be-47c9-a9c5-14409f78d73a&pd_rd_w=ywlXB&pd_rd_wg=gBGEB&pf_rd_p=c49ba2bb-c538-4c7a-9d51-69015c057020&pf_rd_r=CT13EPNNZDDPAQ08JHPD&qid=1701465437&refinements=p_n_pct-off-with-tax%3A2665399031&s=home-improvement&sr=1-3&th=1">
+                    <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/418987xxUJL._SX300_SY300_QL70_ML2_.jpg">
+                    <div class="pt-3 flex items-center justify-between">
+                        <p class="">Spotzero by Milton Prime Spin Mop with Big Wheels and Stainless Steel Wringer Bucket Floor Cleaning and Mopping System 2 Microfiber Refills Aqua Green</p>
+                    </div>
+                    <p class="pt-1 text-gray-900">₹ 1,399.00</p>
+                </a>
+             </div>
+            
+            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                <a href="https://www.amazon.in/Airdopes-141-Playtime-Resistance-Bluetooth/dp/B09N3ZNHTY/ref=lp_976392031_1_4?pf_rd_p=9e034799-55e2-4ab2-b0d0-eb42f95b2d05&pf_rd_r=PMQRKDR3RT2YNS7DQM6Q&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D">
+                  <img class="hover:grow hover:shadow-lg" src="https://m.media-amazon.com/images/I/41nzykE3sIL._SX300_SY300_QL70_ML2_.jpg">
+                  <div class="pt-3 flex items-center justify-between">
+                    <p class="">boAt Airdopes 141 Bluetooth TWS Earbuds with 42H Playtime Low Latency Mode for Gaming ENx Tech IWP IPX4 Water Resistance Smooth Touch Controls (Bold Black)</p>
+                  </div>
+                  <p class="pt-1 text-gray-900">₹1,299.00</p>
+                </a>
+              </div>
+            </div>
+
+    </section>
+
+    <section class="bg-white py-8">
+
+        <div class="container py-8 px-6 mx-auto">
+
+            <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8" href="#">
+			About
+		</a>
+
+            <p class="mt-8 mb-8">Welcome to Jai Balayya 🙏, where discerning shoppers discover the pinnacle of value and quality. We are more than just a destination; we are your personal guide to a world of exclusive deals on exceptional products.
+                <br>
+
+
+            <p class="mb-8">Our philosophy is rooted in the belief that luxury and affordability should go hand-in-hand. It's a curated shopping experience that brings you handpicked selections that excel in both performance and price. We understand that true quality is in the details, and that's why we only showcase items that have earned the highest accolades from consumers for their unparalleled reliability and style.
+
+                At Jai Balayya 🙏, we are committed to elevating your shopping journey. We navigate the vast landscape of products to present you with only the best, ensuring that every recommendation meets our rigorous standards for excellence. Whether you're searching for the latest gadgets, chic home decor, or the next staple in your wardrobe, we've got you covered with choices that resonate with savvy shoppers like you.
+                
+                </p>
+
+        </div>
+
+    </section>
+
+<footer class="container mx-auto bg-white py-8 border-t border-gray-400">
+  <div class="container flex px-3 py-8 ">
+    <div class="w-full mx-auto flex flex-wrap">
+      <div class="flex w-full lg:w-1/2 ">
+        <div class="px-3 md:px-0">
+          <h3 class="font-bold text-gray-900">About</h3>
+          <p class="py-4">
+            Join a community where elegance meets practicality. With Jai Balayya 🙏, you're not just making a purchase; you're making a statement about who you are and the values you hold. We're here to help you make that statement loud and clear, with confidence and sophistication.
+
+            Thank you for turning to Jai Balayya 🙏 as your source for the finest products at the most attractive prices. Let's embark on this stylish journey together.
+            
+          </p>
+        </div>
+      </div>
+      <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right mt-6 md:mt-0">
+        <div class="px-3 md:px-0">
+          <h3 class="text-left font-bold text-gray-900">Social</h3>
+          <h2 class="text-left text-gray-900">we aren't there yet !</h2>
+            
+          <div class="w-full flex items-center py-4 mt-0">
+            <a href="#" class="mx-2">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+              </svg>
+            </a>
+            <a href="#" class="mx-2">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+              </svg>
+            </a>
+            <a href="#" class="mx-2">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"></path>
+              </svg>
+            </a>
+            <a href="#" class="mx-2">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
